@@ -25,58 +25,7 @@
   --transition: 160ms ease;
 }
 
-/* ========= Base ========= */
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body { color: var(--text); background: var(--bg); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
-a { color: inherit; text-decoration: none; }
-ul { margin: 0; padding: 0; list-style: none; }
 
-/* ========= Wrapper & Container ========= */
-.nav-wrapper {
-  width: 100%;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-}
-#nav {
-  max-width: var(--container);
-  margin-inline: auto;
-  padding-inline: 20px;
-  display: grid;
-  grid-template-columns: auto 1fr; /* brand | nav-sections */
-  align-items: center;
-  column-gap: 20px;
-  position: relative;
-}
-
-/* ========= Hamburger ========= */
-.nav-hamburger { display: none; }
-.nav-hamburger button {
-  appearance: none;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  padding: 10px;
-  line-height: 0;
-}
-.nav-hamburger-icon,
-.nav-hamburger-icon::before,
-.nav-hamburger-icon::after {
-  content: "";
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #222;
-  transition: var(--transition);
-  position: relative;
-}
-.nav-hamburger-icon::before { transform: translateY(-6px); }
-.nav-hamburger-icon::after  { transform: translateY(4px); }
-
-/* When nav is expanded on mobile, animate burger into X */
-#nav[aria-expanded="true"] .nav-hamburger-icon { background: transparent; }
-#nav[aria-expanded="true"] .nav-hamburger-icon::before { transform: rotate(45deg); top: 0; }
-#nav[aria-expanded="true"] .nav-hamburger-icon::after  { transform: rotate(-45deg); top: -2px; }
 
 /* ========= Brand ========= */
 .nav-brand .default-content-wrapper {
@@ -86,6 +35,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: block;
   height: auto;
 }
+
+
 /* Optional sizing for your logo image */
 .nav-brand img {
   max-height: 32px; /* adjust to taste */
@@ -154,19 +105,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: #f7f8f2; color: var(--olive-dark);
 }
 
-/* show on hover for devices that support hover */
-@media (hover: hover) {
-  .nav-sections .nav-drop:hover > ul {
-    opacity: 1; visibility: visible; transform: translateY(0);
-  }
-}
-
-/* ========= Current/Active item (optional) ========= */
-.nav-sections li[aria-current="page"] > p,
-.nav-sections li.current > p {
-  color: var(--olive);
-}
-
 /* ========= Support pill (if you keep Support as a normal li) ========= */
 .nav-sections li:last-child > p {
   background: var(--olive);
@@ -177,17 +115,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .nav-sections li:last-child > p:hover { background: var(--olive-dark); }
 
-/* ========= Responsive ========= */
 @media (max-width: 1024px) {
-  #nav {
-    grid-template-columns: auto auto; /* brand | hamburger */
-  }
-  .nav-hamburger { 
-    display: flex;
-    justify-content: flex-end;
-    order: 2;
-  }
-
   /* Put brand on the left, hamburger on the right, hide the horizontal menu */
   .nav-brand { order: 1; }
   .nav-sections { 
@@ -239,4 +167,3 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 520px) {
   .nav-brand img { max-height: 28px; }
 }
-``

@@ -39,11 +39,11 @@
   color: #1a1a1a;
 }
 
-.customform .field-wrapper[data-required] label::after {
+/* .customform .field-wrapper[data-required] label::after {
   content: '*';
   color: #cf2230;
   margin-left: 4px;
-}
+} */
 
 /* Input Fields */
 .customform input,
@@ -141,7 +141,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #fff;
-  background-color: ##a2a84c;
+  background-color: #a2a84c;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -149,8 +149,8 @@
 }
 
 .customform .form-submit-wrapper .btn:hover {
-  background-color: #a81c27;
-  box-shadow: 0 4px 12px rgba(207, 34, 48, 0.3);
+  background-color: #ffda00;
+  box-shadow: 0 4px 12px rgba(190, 207, 34, 0.3);
 }
 
 .customform .form-submit-wrapper .btn:active {

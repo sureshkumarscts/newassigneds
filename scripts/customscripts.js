@@ -27,5 +27,5 @@ function moveAsFirstChild(parentSelector, moveSelector) {
 
 //usage
 document.addEventListener('DOMContentLoaded', () => {
-  moveAsFirstChild('.header-wrapper', '.top-nav);
+  moveAsFirstChild('.header-wrapper', '.top-nav');
 });

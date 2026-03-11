@@ -167,3 +167,15 @@
 @media (max-width: 520px) {
   .nav-brand img { max-height: 28px; }
 }
+/*nav top header changes*/
+.top-nav{
+    padding: 10px 0;
+    background: #a2a84c;
+}
+.top-nav .columns-img-col p{
+    position: absolute;
+    margin-top: -147px;
+}
+.top-nav .columns-img-col img{
+    width: 5%;
+}

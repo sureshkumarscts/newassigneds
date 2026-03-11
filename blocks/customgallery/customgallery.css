@@ -1,0 +1,80 @@
+/* Gallery block — 3×3 responsive image grid */
+:root {
+  /* Tweak to match your theme */
+  --gallery-gap: 14px;
+  --gallery-radius: 6px;
+  --gallery-accent: #a8ae57; /* used for optional title underline */
+}
+
+.block.gallery {
+  /* allows local responsive queries if you want container queries later */
+  container: gallery / inline-size;
+}
+
+/* Optional heading styles if a heading is present inside the block */
+.block.gallery .gallery-title {
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: inherit; /* inherits from page theme */
+  display: inline-block;
+  position: relative;
+}
+
+.block.gallery .gallery-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  background: color-mix(in srgb, var(--gallery-accent) 80%, transparent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Grid wrapper */
+.block.gallery .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gallery-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Grid item */
+.block.gallery .gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--gallery-radius);
+  background: #000;           /* safe background while image loads */
+  aspect-ratio: 16 / 9;       /* uniform thumbnail height */
+}
+
+/* Image / picture should fill the cell */
+.block.gallery .gallery-item picture,
+.block.gallery .gallery-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.block.gallery .gallery-item img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Hover affordance (optional; feel free to remove) */
+.block.gallery .gallery-item:focus-within,
+.block.gallery .gallery-item:hover {
+  outline: 0;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gallery-accent) 60%, transparent);
+}
+
+/* Responsive: 3 → 2 → 1 columns */
+@media (max-width: 900px) {
+  .block.gallery .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .block.gallery .gallery-grid { grid-template-columns: 1fr; }
+}

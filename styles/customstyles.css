@@ -179,3 +179,9 @@
 .top-nav .columns-img-col img{
     width: 5%;
 }
+.message-from .columns-wrapper{
+  position: absolute;
+}
+.message-from .customform-wrapper{
+  margin-left: 55%;
+}

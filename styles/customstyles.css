@@ -490,7 +490,7 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
     background: #a2a84c;
     z-index: 1; */
 }
-.footer-wrapper p, .footer-wrapper a{
+.footer-wrapper p, .footer-wrapper a, .footer-wrapper h2{
   color: #fff
 }
 .footer-wrapper a:hover{

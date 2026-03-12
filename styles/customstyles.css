@@ -180,6 +180,13 @@
 @media (max-width: 520px) {
   .nav-brand img { max-height: 28px; }
 }
+/*nav top header changes*/
+.message-from .columns-wrapper{
+  position: absolute;
+}
+.message-from .customform-wrapper{
+  margin-left: 55%;
+}
 
 /*Custom cards section both*/
 .custom-cards > .cards-wrapper {
@@ -365,4 +372,9 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
   top: 0;
     position: absolute;
     width: 100%;
+    padding: 10px 0;
+    background: #a2a84c;
+}
+.top-nav .columns-img-col img{
+    width: 5%;
 }

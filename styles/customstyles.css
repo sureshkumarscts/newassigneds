@@ -23,6 +23,16 @@
   --gap: 28px;
   --radius: 12px;
   --transition: 160ms ease;
+  --form-gap: 18px;
+  --form-gap-row: 18px;
+  --form-radius: 10px;
+  --form-border: #e4e6eb;
+  --form-border-focus: #a8ae57;          /* accent */
+  --form-shadow-focus: 0 0 0 4px rgba(168,174,87,.18);
+  --form-bg: #fff;
+  --form-text: #111;
+  --form-placeholder: #9aa0a6;
+  --form-invalid: #d93025;
 }
 
 
@@ -238,4 +248,132 @@
  
 .custom-cards1 > .cards-wrapper > .cards > ul > li > .cards-card-body > h2{
     text-align: center;
+}
+/* ---------- Form container ---------- */
+form[data-action="/contactform"] {
+  max-width: 980px;               /* center the form on the page */
+  margin: 0 auto;
+  padding: 16px;
+  color: var(--form-text);
+}
+/* ---------- Grid: 2 columns on desktop ---------- */
+form[data-action="/contactform"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;          /* left | right */
+  gap: var(--form-gap-row) var(--form-gap);
+}
+
+/* Make each wrapper a grid item */
+form[data-action="/contactform"] .field-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Full-width rows (textarea + submit) */
+form[data-action="/contactform"] .form-textarea-wrapper,
+form[data-action="/contactform"] .form-submit-wrapper {
+  grid-column: 1 / -1; /* span both columns */
+}
+
+/* ---------- Inputs & Textarea ---------- */
+form[data-action="/contactform"] input[type="text"],
+form[data-action="/contactform"] input[type="email"],
+form[data-action="/contactform"] textarea {
+  width: 100%;
+  background: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: var(--form-radius);
+  padding: 12px 14px;
+  font: 16px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--form-text);
+  transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
+}
+
+form[data-action="/contactform"] input::placeholder,
+form[data-action="/contactform"] textarea::placeholder {
+  color: var(--form-placeholder);
+}
+
+/* Resize control for textarea */
+form[data-action="/contactform"] textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Focus states */
+form[data-action="/contactform"] input:focus,
+form[data-action="/contactform"] textarea:focus {
+  outline: none;
+  border-color: var(--form-border-focus);
+  box-shadow: var(--form-shadow-focus);
+}
+
+/* ---------- Labels (visually hidden but accessible) ---------- */
+form[data-action="/contactform"] .field-label {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Pair specific ordering (keeps your intended left/right) ---------- */
+/* Row 1 */
+form[data-action="/contactform"] .form-name   { grid-column: 1; }
+form[data-action="/contactform"] .form-email  { grid-column: 2; }
+/* Row 2 */
+form[data-action="/contactform"] .form-phone  { grid-column: 1; }
+form[data-action="/contactform"] .form-subject{ grid-column: 2; }
+
+/* ---------- Submit button ---------- */
+form[data-action="/contactform"] .btn {
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  background: var(--form-border-focus);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: transform .08s ease, filter .16s ease, background-color .16s ease;
+}
+
+form[data-action="/contactform"] .btn:hover { filter: brightness(0.95); }
+form[data-action="/contactform"] .btn:active { transform: translateY(1px); }
+
+/* Align submit to left on desktop, full-width on mobile */
+form[data-action="/contactform"] .form-submit { justify-self: start; }
+
+/* ---------- Validation cues ---------- */
+/* Native 'required' invalid */
+form[data-action="/contactform"] input:invalid,
+form[data-action="/contactform"] textarea:invalid {
+  border-color: var(--form-invalid);
+}
+form[data-action="/contactform"] input:invalid:focus,
+form[data-action="/contactform"] textarea:invalid:focus {
+  box-shadow: 0 0 0 4px rgba(217,48,37,.14);
+}
+
+/* ---------- Responsive: stack to 1 column ---------- */
+@media (max-width: 900px) {
+  form[data-action="/contactform"] {
+    grid-template-columns: 1fr; /* single column */
+  }
+  /* All items full width */
+  form[data-action="/contactform"] .field-wrapper {
+    grid-column: 1 / -1 !important;
+  }
+  /* Submit fills width on small screens */
+  form[data-action="/contactform"] .form-submit { justify-self: stretch; }
+  form[data-action="/contactform"] .btn { width: 100%; }
+}
+
+/* ---------- Optional: compact spacing on very small screens ---------- */
+@media (max-width: 420px) {
+  :root { --form-gap-row: 14px; --form-gap: 14px; }
+  form[data-action="/contactform"] input[type="text"],
+  form[data-action="/contactform"] input[type="email"],
+  form[data-action="/contactform"] textarea {
+    padding: 11px 12px;
+  }
 }

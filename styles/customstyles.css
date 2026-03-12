@@ -482,7 +482,7 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
     grid-template-columns: 1fr;
   }
 }
-.customfooter{
+.footer-wrapper{
     background-position: center center;
     background-image: url(https://themeloto.com/wps/whaet/wp-content/uploads/2024/12/whaet-slider2.jpg);
     background-size: cover;

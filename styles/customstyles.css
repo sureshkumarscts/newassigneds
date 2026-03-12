@@ -186,6 +186,11 @@
 }
 .message-from .customform-wrapper{
   margin-left: 55%;
+  margin-top: -5%;
+  
+}
+.message-from #send-a-massage{
+  margin-left: 59%;
 }
 
 /*Custom cards section both*/

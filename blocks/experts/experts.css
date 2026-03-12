@@ -155,3 +155,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.experts-members #experts-members{
+  text-align: center;
+}

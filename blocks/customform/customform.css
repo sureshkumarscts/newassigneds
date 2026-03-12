@@ -4,6 +4,7 @@
 
 /* Base Layout & Structure */
 .customform {
+  display: grid;
   max-width: 500px;
   padding: 50px 10px;
 }

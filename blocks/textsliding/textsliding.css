@@ -1,0 +1,113 @@
+/* ====== Shell ====== */
+.textsliding-container {
+  background: transparent; /* or your section bg */
+  padding: 16px 0;
+  overflow: hidden;
+}
+
+.textsliding-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: 16px;
+}
+
+/* ====== Marquee core ====== */
+.textsliding.block {
+  --tx-gap: 72px;                  /* default, will be updated by JS from data-gap */
+  --tx-speed-pps: 70;              /* pixels per second, updated by JS from data-speed */
+  --tx-duration: 24s;              /* computed by JS; CSS fallback */
+  --tx-font-size: clamp(22px, 3vw, 40px);
+  --tx-color: #111;
+  --tx-link-color: inherit;
+  --tx-link-hover: #7a8330;        /* olive-ish hover to match prior theme */
+  position: relative;
+  overflow: hidden;                 /* clip the scrolling track */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.textsliding-track {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tx-gap);
+  white-space: nowrap;
+  will-change: transform;
+  /* The keyframe is applied by JS after duplication is done */
+}
+
+.textsliding-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.txmtextsliding .textsliding-item h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: var(--tx-font-size);
+  line-height: 1;
+  color: var(--tx-color);
+  letter-spacing: 0.2px;
+}
+
+.txmtextsliding .textsliding-item h2 a {
+  color: var(--tx-link-color);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.textsliding .textsliding-item h2 a:hover,
+.textsliding .textsliding-item h2 a:focus-visible {
+  color: var(--tx-link-hover);
+  outline: none;
+}
+
+/* ====== Animation definitions ====== */
+@keyframes textsliding-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(var(--tx-shift-left, -50%)); }
+}
+
+@keyframes textsliding-right {
+  from { transform: translateX(var(--tx-shift-right, -50%)); }
+  to   { transform: translateX(0); }
+}
+
+/* Pause on hover */
+.textsliding.block:hover .textsliding-track,
+.textsliding.block.is-paused .textsliding-track {
+  animation-play-state: paused !important;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .textsliding-track { animation: none !important; transform: none !important; }
+}
+
+/* Optional: subtle gradient fade on edges */
+.textsliding.block::before,
+.textsliding.block::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  pointer-events: none;
+}
+
+.textsliding.block::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.textsliding.block::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+/* Dark backgrounds (optional) */
+.textsliding-container.is-dark .textsliding.block::before,
+.textsliding-container.is-dark .textsliding.block::after {
+  background: none;
+}
+.textsliding-container.is-dark .h2 { color: #fff; }
+.textsliding-container.is-dark .h2 a { color: #fff; }

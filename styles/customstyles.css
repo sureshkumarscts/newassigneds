@@ -377,3 +377,36 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
     color: white;
 }
 /*header section image changes*/
+.section.textscrollsection {
+  overflow: hidden;
+  ul{
+    list-style: none;
+    padding-left: 0;
+    -webkit-text-stroke: 1px #888888;
+    -webkit-text-fill-color: transparent;
+    font-size: 100px;
+    margin: 0 40px;
+    padding: 3px 0;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    animation: marqueeanimate 50s linear infinite;
+    width: 200%;
+    li:hover{
+      -webkit-text-stroke-color: #0659D4;
+      -webkit-text-fill-color: #0659D4;
+    }
+  }
+  .columns-wrapper{
+    overflow: hidden;
+  }  
+}
+@keyframes marqueeanimate {
+  100% {
+    transform: translate(-100%, 0);
+  }
+}  
+.textscrollsection:hover ul{
+  animation-play-state: paused;
+}

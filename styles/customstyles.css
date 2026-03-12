@@ -486,7 +486,7 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
     background-position: center center;
     background-image: url(https://themeloto.com/wps/whaet/wp-content/uploads/2024/12/whaet-slider2.jpg);
     background-size: cover;
-    position: relative;
+    /* position: relative;
     background: #a2a84c;
-    z-index: 1;
+    z-index: 1; */
 }

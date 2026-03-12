@@ -1,157 +1,104 @@
-/* ====== Section ====== */
-.section.experts-members {
-  position: relative;
-  background: #ffffff;
-  padding: 24px 16px 40px;
+/* ===== Section shell ===== */
+.section.experts-members.experts-container {
+  background: #fff;
+  padding: 28px 16px 40px;
+  color: #222;
 }
 
-.experts-members-wrapper {
+/* Centered title block */
+.experts-container .default-content-wrapper {
+  max-width: 1280px;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+
+.experts-container .default-content-wrapper h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(24px, 3.2vw, 36px);
+  line-height: 1.2;
+}
+
+/* ===== Grid wrapper ===== */
+.experts-container .experts-wrapper {
   max-width: 1280px;
   margin: 0 auto;
 }
 
-.experts-title {
-  margin: 8px 0 24px;
-  text-align: center;
-  font-size: clamp(24px, 3.2vw, 36px);
-  line-height: 1.2;
-  font-weight: 600;
-  color: #222;
-}
-
-/* ====== Cards block ====== */
-.cards.block.experts {
-  margin-top: 8px;
-}
-
-.experts-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
+/* The block itself contains 3 direct children <div> (each card) */
+.experts-container .experts.block {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(16px, 3vw, 32px);
+  align-items: start;
 }
 
-.experts-card {
+/* Each card container */
+.experts-container .experts.block > div {
   display: flex;
   flex-direction: column;
 }
 
-/* Image */
-.experts-media picture, 
-.experts-media img {
+/* ===== Image area ===== */
+/* The first inner <div> inside each card holds the <picture> */
+.experts-container .experts.block > div > div:first-child {
+  position: relative;
+  width: 100%;
+  /* 4:3 visual proportion like the screenshot */
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+/* Ensure the picture/img fills and crops nicely */
+.experts-container .experts.block picture,
+.experts-container .experts.block img {
   display: block;
   width: 100%;
-  height: auto;
-}
-
-.experts-media {
-  width: 100%;
-  aspect-ratio: 4 / 3;   /* matches the screenshot proportions */
-  overflow: hidden;
-  background: #f4f4f4;
-}
-
-.experts-media img {
-  width: 100%;
   height: 100%;
+}
+
+.experts-container .experts.block img {
   object-fit: cover;
+  object-position: center;
+  /* subtle polish */
+  transform: translateZ(0);
 }
 
-/* Name + socials */
-.experts-body {
+/* ===== Name (second inner <div> -> <h2>) ===== */
+.experts-container .experts.block > div > div:last-child {
   text-align: center;
-  padding-top: 12px;
 }
 
-.experts-name {
-  margin: 6px 0 10px;
+.experts-container .experts.block > div > div:last-child h2 {
+  margin: 10px 0 0;
   font-size: clamp(16px, 2vw, 18px);
   font-weight: 500;
   color: #333;
 }
 
-/* Socials row */
-.experts-socials {
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-
-  list-style: none;
-  padding: 0;
-  margin: 6px 0 0;
+/* ===== Spacing alignment with screenshot ===== */
+@media (min-width: 1200px) {
+  .experts-container .experts.block {
+    gap: 28px; /* comfortable space between the three cards */
+  }
 }
 
-.experts-socials li a {
-  display: inline-grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid #e6e6e6;
-  color: #9b9b9b;
-  background: #fff;
-  transition: all .2s ease-in-out;
-}
-
-.experts-socials li a:hover,
-.experts-socials li a:focus-visible {
-  color: #fff;
-  border-color: #a7ad4b;
-  background: #a7ad4b; /* olive accent to match the banner theme */
-  outline: none;
-}
-
-.experts-socials svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* Back-to-top button (right edge of section) */
-.experts-backtotop {
-  position: absolute;
-  right: 16px;
-  bottom: 18px;
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: 4px;
-  background: #a7ad4b;
-  color: #fff;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: filter .2s ease-in-out;
-}
-
-.experts-backtotop:hover {
-  filter: brightness(0.95);
-}
-
-.experts-backtotop svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* ====== Responsive ====== */
-@media (max-width: 1024px) {
-  .experts-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
+/* ===== Responsive behavior ===== */
 @media (max-width: 900px) {
-  .experts-grid { grid-template-columns: repeat(2, 1fr); }
+  .experts-container .experts.block {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+  }
 }
 
 @media (max-width: 520px) {
-  .experts-grid { grid-template-columns: 1fr; }
-  .experts-backtotop { right: 12px; bottom: 12px; }
+  .experts-container .experts.block {
+    grid-template-columns: 1fr; /* single column on phones */
+  }
 }
 
-/* Optional: better type rendering */
-.experts-members * {
+/* Optional: consistent smoothing */
+.experts-container * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

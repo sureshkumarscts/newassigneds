@@ -490,3 +490,10 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
     background: #a2a84c;
     z-index: 1; */
 }
+.footer-wrapper p, .footer-wrapper a{
+  color: #fff
+}
+.footer-wrapper a:hover{
+  color:#A2A84C;
+  text-decoration: none;
+}

@@ -1,12 +1,12 @@
-.card {
+.ourservices .wheat-strategy {
  
     justify-content: center;    /* center the grid */
 }
-h1{
+.ourservices h1{
     text-align:center;
 }
 
-.wheat-strategy {
+.ourservices .wheat-strategy {
     background-color: #ffffff;
     width: 100%;
     max-width: 350px;
@@ -19,7 +19,7 @@ h1{
     box-shadow: 0 4px 8px rgba(128, 128, 128, 0.4);
 }
 
-.wheat-strategy:hover {
+.ourservices .wheat-strategy:hover {
     background-color: #4caf50;  
     color: #ffffff;             
     transform: translateY(-5px); /* lifts the card upward */

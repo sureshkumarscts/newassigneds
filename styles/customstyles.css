@@ -219,11 +219,15 @@ header nav .nav-sections .nav-drop[aria-expanded="true"]::after
 .custom-cards > .cards-wrapper > .cards > ul > li > .cards-card-image img{
     width: 130px;
 }
-.custom-cards > .cards-wrapper {
+/* .custom-cards > .cards-wrapper {
     border-radius: 20px;
     border: transparent;
-}
- 
+} */
+.custom-cards > .cards-wrapper {
+    margin-top: -83px;
+    position: relative;
+    width: 88%;
+} 
 .custom-cards > .cards-wrapper > .cards > ul > li > .cards-card-body > p {
     text-align: center;
 }
@@ -380,6 +384,9 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
     border-radius: 8px;
     background-color: var(--olive);
     color: white;
+}
+.custom-slider > .carousel-wrapper .carousel-slide-indicators {
+    display:none;
 }
 /*header section image changes*/
 .section.textscrollsection {

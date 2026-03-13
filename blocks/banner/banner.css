@@ -1,96 +1,56 @@
-/* ===== Banner base ===== */
-.section.banner-container {
-  background: #a7ad4b;          /* Olive-green from the screenshot */
-  /* Fallback if you prefer: background: rgb(167, 173, 75); */
-  color: #ffffff;
-}
+.stats-container {
 
-.banner-container .banner-wrapper {
-  max-width: 1280px;             /* Keep the content area cleanly centered */
-  margin: 0 auto;
-}
+  display: flex;
 
-/* Remove default list styles and make it full-bleed horizontally */
-.banner-container .banner.block ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+  justify-content: space-between;
 
-/* Use the single <li> as the row container for the 4 items */
-.banner-container .banner.block ul > li {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Four equal columns */
-  gap: clamp(16px, 5vw, 80px);           /* Responsive gap similar to the screenshot spacing */
   align-items: center;
-  justify-items: center;
-  padding: clamp(40px, 10vw, 120px) clamp(16px, 6vw, 80px);
-  border-top: 2px solid rgba(255,255,255,0.7); /* thin white line at the top like the image */
-}
 
-/* ===== Each stat card ===== */
-.banner-container .cards-card-body {
-  text-align: center;
-}
+  background: #8a8c46;
 
-/* The first <p> in each card is the big number line */
-.banner-container .cards-card-body > p:first-child {
-  font-size: clamp(28px, 4.2vw, 56px);   /* Large, responsive number size */
-  line-height: 1.15;
-  font-weight: 600;                      /* Semi-bold for a crisp look */
+  padding: 60px 40px;
+
   color: #fff;
-  letter-spacing: 0.5px;
-  margin: 0;
+
 }
 
-/* If the first <p> also includes the label with <br> (only in the first card),
-   soften the label line with opacity using :has() support where available */
-@supports(selector(:has(*))) {
-  .banner-container .cards-card-body > p:first-child:has(br) {
-    color: rgba(255,255,255,0.92);
-  }
+.stat-item {
+
+  text-align: center;
+
+  flex: 1;
+
 }
 
-/* The second <p> in the cards that have two lines is the label */
-.banner-container .cards-card-body > p:nth-child(2) {
-  margin-top: 10px;
-  font-size: clamp(14px, 1.5vw, 20px);   /* Smaller subtitle */
-  line-height: 1.4;
-  color: rgba(255,255,255,0.95);
-  font-weight: 500;
+.stat-number {
+
+  font-size: 42px;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+
 }
 
-/* Tidy up the “number + unit” spacing (e.g., `23 +`, `99 %`) */
-.banner-container .cards-card-body > p:first-child {
-  word-spacing: 0.1em;
+.stat-text {
+
+  font-size: 16px;
+
+  opacity: 0.9;
+
 }
 
-/* ===== Responsive tweaks ===== */
-@media (max-width: 1024px) {
-  .banner-container .banner.block ul > li {
-    gap: clamp(16px, 4vw, 48px);
-    padding: clamp(32px, 8vw, 80px) clamp(16px, 5vw, 56px);
-  }
-}
+/* responsive */
 
 @media (max-width: 768px) {
-  .banner-container .banner.block ul > li {
-    grid-template-columns: repeat(2, 1fr);   /* 2 columns on tablets */
-    row-gap: 32px;
-  }
-}
 
-@media (max-width: 480px) {
-  .banner-container .banner.block ul > li {
-    grid-template-columns: 1fr;              /* Single column on phones */
-    row-gap: 28px;
-    padding: 32px 16px;
-  }
-}
+  .stats-container {
 
-/* ===== Optional: improved type rendering ===== */
-.banner-container,
-.banner-container * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    flex-direction: column;
+
+    gap: 30px;
+
+  }
+
 }
+ 

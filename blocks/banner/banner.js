@@ -1,17 +1,75 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
 export default function decorate(block) {
-  /* change to ul, li */
-  const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
-    });
-    ul.append(li);
+ 
+  /* first child */
+ 
+  const container = block.children[0];
+ 
+  if (!container) return;
+ 
+  container.classList.add("stats-container");
+ 
+  const items = container.children;
+ 
+  [...items].forEach((item) => {
+ 
+    item.classList.add("stat-item");
+ 
+    const number = item.querySelector("h3");
+ 
+    const text = item.querySelector("p");
+ 
+    if (number) {
+ 
+      number.classList.add("stat-number");
+ 
+    }
+ 
+    if (text) {
+ 
+      text.classList.add("stat-text");
+ 
+    }
+ 
   });
-  ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  block.replaceChildren(ul);
+ 
+  /* counter animation */
+ 
+  const counters = container.querySelectorAll(".stat-number");
+ 
+  counters.forEach((counter) => {
+ 
+    const target = counter.innerText.replace(/[^0-9]/g, "");
+ 
+    let count = 0;
+ 
+    const updateCounter = () => {
+ 
+      const speed = 50;
+ 
+      const increment = Math.ceil(target / speed);
+ 
+      if (count < target) {
+ 
+        count += increment;
+ 
+        counter.innerText = count;
+ 
+        setTimeout(updateCounter, 40);
+ 
+      } else {
+ 
+        counter.innerText = counter.dataset.original || counter.innerText;
+ 
+      }
+ 
+    };
+ 
+    counter.dataset.original = counter.innerText;
+ 
+    updateCounter();
+ 
+  });
+ 
 }
+ 
+ 

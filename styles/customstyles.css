@@ -233,7 +233,13 @@ header nav .nav-sections .nav-drop[aria-expanded="true"]::after
     justify-content: center;
     margin:0 auto;
 }
+.custom-cards > .cards-wrapper > .cards {
+    text-align:center;
+}
  
+.custom-cards > .cards-wrapper > .cards > ul >li {
+    height:200px;
+} 
 .custom-cards1 > .cards-wrapper > .cards > ul > li:hover {
     background-color:#98a04a;
     color: white;;
@@ -253,7 +259,13 @@ header nav .nav-sections .nav-drop[aria-expanded="true"]::after
 .custom-cards1 > .cards-wrapper > .cards > ul > li > .cards-card-body > h2{
     text-align: center;
 }
-
+.custom-cards1 > .cards-wrapper > .cards {
+    text-align:center;
+}
+ 
+.custom-cards1 > .cards-wrapper > .cards > ul >li {
+    height:290px;
+}
 /* ========= Form shell & grid ========= */
 form[data-action="/contactform"]{
   font-family: var(--ff);

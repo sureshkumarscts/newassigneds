@@ -836,12 +836,13 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
 .textcarousel .carousel-slide-image picture,
 .textcarousel .carousel-slide-image img {
   display: block;
-  width: 100%;
+  width: 50%;
   height: auto;
 }
 .textcarousel .carousel-slide-image img {
   aspect-ratio: 16/10;       /* consistent row height */
   object-fit: cover;
+  width: 15%;
 }
 
 /* Content block */

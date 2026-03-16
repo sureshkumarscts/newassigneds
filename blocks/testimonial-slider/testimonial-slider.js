@@ -207,7 +207,7 @@ function initSlider(block, slidesData, config) {
     if (newIndex < 0) newIndex = loop ? last : 0;
     if (newIndex > last) newIndex = loop ? 0 : last;
     index = newIndex;
-    list.style.transform = `translateX(-${index * 100}%)`;
+    list.style.transform = `translateX(-${index * 50}%)`;
     updateARIA(index);
   }
 

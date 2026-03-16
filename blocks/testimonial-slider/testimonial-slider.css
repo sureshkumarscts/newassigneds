@@ -236,3 +236,253 @@
     box-shadow: none;
   }
 }
+/* =========================================================
+   Testimonial Slider — styled like "Our Projects" slider
+   Targeting your exact DOM/classes from the snippet.
+   ========================================================= */
+
+/* ---- Section container ---- */
+.section.testimonial-slider-container {
+  --ts-max-w: 1200px;
+  --ts-pad-x: clamp(16px, 3.2vw, 40px);
+  --ts-pad-y: clamp(28px, 4.5vw, 72px);
+
+  --ts-text: #1b1b1f;
+  --ts-muted: #60656f;
+  --ts-border: rgba(0,0,0,.08);
+  --ts-accent: #8abf3d;           /* accent similar to theme */
+  --ts-dot: #cbd1d8;
+
+  --ts-card-radius: 14px;
+  --ts-shadow: 0 10px 24px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06);
+
+  color: var(--ts-text);
+  background: #fff;
+  padding: var(--ts-pad-y) 0;
+}
+.section.testimonial-slider-container .testimonial-slider-wrapper {
+  max-width: var(--ts-max-w);
+  margin: 0 auto;
+  padding: 0 var(--ts-pad-x);
+}
+
+/* ---- Slider viewport ---- */
+.testimonial-slider.block .ts-viewport {
+  position: relative;
+  outline: none; /* rely on focus-visible below */
+}
+
+/* ---- Slides strip — grid like "Our Projects" carousel ---- */
+.testimonial-slider.block .ts-slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* Grid-powered horizontal carousel */
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: clamp(16px, 2.4vw, 28px);
+
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* Breakpoints for multi-card views (Our Projects → 1/2/3/4 items) */
+@media (min-width: 640px) {
+  .testimonial-slider.block .ts-slides {
+    grid-auto-columns: calc(50% - 0.5 * clamp(16px, 2.4vw, 28px));
+  }
+}
+@media (min-width: 960px) {
+  .testimonial-slider.block .ts-slides {
+    grid-auto-columns: calc(33.333% - (2 * clamp(16px, 2.4vw, 28px))/3);
+  }
+}
+@media (min-width: 1200px) {
+  .testimonial-slider.block .ts-slides {
+    grid-auto-columns: calc(25% - (3 * clamp(16px, 2.4vw, 28px))/4);
+  }
+}
+
+/* ---- Individual slide ---- */
+.testimonial-slider.block .ts-slide {
+  display: grid;
+  padding: 0; /* card handles padding */
+  align-content: start;
+  opacity: .94;                 /* inactive fade like cards */
+  transition: opacity .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.testimonial-slider.block .ts-slide[aria-hidden="false"] {
+  opacity: 1;
+}
+
+/* Hover/elevation (desktop) */
+@media (hover:hover) and (pointer:fine) {
+  .testimonial-slider.block .ts-slide:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* ---- Card ---- */
+.testimonial-slider.block .ts-card {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--ts-border);
+  border-radius: var(--ts-card-radius);
+  box-shadow: var(--ts-shadow);
+  padding: clamp(16px, 2.4vw, 22px);
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: clamp(10px, 1.6vw, 14px);
+  height: 100%;
+}
+
+/* Avatar (top image) — square → circle, centered */
+.testimonial-slider.block .ts-avatar {
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 4px 0 2px;
+}
+.testimonial-slider.block .ts-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Quote & meta */
+.testimonial-slider.block .ts-quote {
+  margin: 6px 0 0;
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.7;
+  color: var(--ts-text);
+}
+.testimonial-slider.block .ts-meta {
+  margin: 6px 0 0;
+  color: var(--ts-muted);
+  font-size: clamp(13px, 1.2vw, 15px);
+}
+.testimonial-slider.block .ts-name {
+  color: var(--ts-text);
+  font-weight: 700;
+}
+.testimonial-slider.block .ts-role {
+  opacity: .9;
+}
+
+/* ---- Controls (prev/next) like projects carousel ---- */
+.testimonial-slider.block .ts-controls {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none; /* allow clicks only on buttons */
+}
+.testimonial-slider.block .ts-prev,
+.testimonial-slider.block .ts-next {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--ts-shadow);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+  margin-inline: 4px;
+}
+.testimonial-slider.block .ts-prev:hover,
+.testimonial-slider.block .ts-next:hover {
+  transform: scale(1.04);
+  background: #f7f9fb;
+}
+
+/* Icon sizing inside buttons */
+.testimonial-slider.block .ts-prev .icon,
+.testimonial-slider.block .ts-next .icon {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+}
+.testimonial-slider.block .ts-prev img,
+.testimonial-slider.block .ts-next img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Nudge buttons in on small screens */
+@media (max-width: 959.98px) {
+  .testimonial-slider.block .ts-prev { margin-left: 6px; }
+  .testimonial-slider.block .ts-next { margin-right: 6px; }
+}
+
+/* ---- Dots/Pagination ---- */
+.testimonial-slider.block .ts-dots {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 0;
+  margin: clamp(14px, 2vw, 20px) 0 0;
+}
+.testimonial-slider.block .ts-dots li { margin: 0; padding: 0; }
+.testimonial-slider.block .ts-dots button {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ts-dot);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.testimonial-slider.block .ts-dots button:hover {
+  transform: scale(1.1);
+  background: color-mix(in oklab, var(--ts-dot) 70%, #000 30%);
+}
+.testimonial-slider.block .ts-dots button[aria-current="true"],
+.testimonial-slider.block .ts-dots button:disabled {
+  background: var(--ts-accent);
+}
+
+/* ---- Focus visibility for a11y ---- */
+.testimonial-slider.block .ts-prev:focus-visible,
+.testimonial-slider.block .ts-next:focus-visible,
+.testimonial-slider.block .ts-dots button:focus-visible {
+  outline: 2px solid var(--ts-accent);
+  outline-offset: 2px;
+}
+
+/* ---- Reduce motion preference ---- */
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-slider.block .ts-slides { transition: none !important; }
+  .testimonial-slider.block .ts-slide { transition: none !important; }
+}
+
+/* ---- High contrast adjustments (optional) ---- */
+@media (prefers-contrast: more) {
+  .testimonial-slider.block .ts-card {
+    border-color: rgba(0,0,0,.18);
+    box-shadow: none;
+  }
+}
+/* --- Force 2 cards per view across all breakpoints --- */
+.testimonial-slider.block .ts-slides {
+  /* Each slide column occupies 50% width (minus half the gap), so two are visible */
+  grid-auto-columns: calc(50% - 0.5 * clamp(16px, 2.4vw, 28px)) !important;
+}
+
+/* Optional: if you want a tighter gap at mobile for 2-up */
+@media (max-width: 480px) {
+  .testimonial-slider.block .ts-slides {
+    gap: 16px !important;
+  }
+}

@@ -925,3 +925,8 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
   /* you can add a subtle transform/blur during transitions if your JS toggles a class,
      e.g., .is-animating */
 }
+.textcarousel .carousel.block {
+  /* This targets the currently active slide(s) for extra emphasis if desired */
+  display: none;
+}   
+

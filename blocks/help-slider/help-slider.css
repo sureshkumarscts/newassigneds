@@ -1,0 +1,156 @@
+/* Help Slider — cards like the "Need Any Help?" section */
+
+/* tokens */
+.help-slider {
+  --gap: 24px;                 /* overridden by JS via style var */
+  --per-view: 3;               /* overridden by JS via style var */
+  --radius: 14px;
+  --border: rgba(0,0,0,.08);
+  --shadow: 0 10px 24px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06);
+  --text: #1b1b1f;
+  --muted: #60656f;
+  --accent: #8abf3d;
+  --duration: 300ms;
+  color: var(--text);
+}
+
+/* viewport & track */
+.help-slider .hs-viewport { position: relative; }
+.help-slider .hs-slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--gap);
+  grid-auto-columns: calc( (100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view) );
+  transition: transform var(--duration) ease;
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* slide & card */
+.help-slider .hs-slide { display: block; }
+.help-slider .hs-card {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  row-gap: 10px;
+
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 2.2vw, 22px);
+}
+
+/* icon/image */
+.help-slider .hs-media {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #f5f7f9;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.help-slider .hs-media picture,
+.help-slider .hs-media img,
+.help-slider .hs-media svg {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+/* title/desc/link */
+.help-slider .hs-title {
+  margin: 6px 0 0;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.35;
+  color: var(--text);
+}
+.help-slider .hs-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(13px, 1.2vw, 15px);
+  line-height: 1.7;
+}
+.help-slider .hs-link {
+  align-self: end;
+  justify-self: start;
+  margin-top: 10px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.help-slider .hs-link:hover,
+.help-slider .hs-link:focus-visible {
+  border-bottom-color: var(--accent);
+}
+
+/* controls */
+.help-slider .hs-controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+.help-slider .hs-prev,
+.help-slider .hs-next {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  margin-inline: 4px;
+  transition: transform .2s ease, background .2s ease;
+}
+.help-slider .hs-prev:hover,
+.help-slider .hs-next:hover { transform: scale(1.04); background: #f7f9fb; }
+.help-slider .hs-prev .icon,
+.help-slider .hs-next .icon { width: 16px; height: 16px; display: inline-grid; place-items: center; }
+
+/* dots */
+.help-slider .hs-dots {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: clamp(14px, 2vw, 20px) 0 0;
+  padding: 0;
+}
+.help-slider .hs-dots button {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: #cbd1d8;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.help-slider .hs-dots button:hover { transform: scale(1.1); background: #aeb6bf; }
+.help-slider .hs-dots button[aria-current="true"],
+.help-slider .hs-dots button:disabled { background: var(--accent); }
+
+/* a11y focus */
+.help-slider :where(.hs-prev,.hs-next,.hs-dots button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* responsive tweaks */
+@media (max-width: 599.98px) {
+  .help-slider { --gap: 16px; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .help-slider .hs-slides { transition: none !important; }
+}

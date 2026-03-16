@@ -1,0 +1,82 @@
+/* Services Grid (3×2) — styles tuned to resemble "Our Services" cards. [1](https://www.svgrepo.com/svg/317890/chevron-left-right) */
+
+.services-grid { color: #1b1b1f; }
+
+/* Grid container */
+.services-grid .sg-grid {
+  --sg-columns: 3; /* default (overridden by JS) */
+  --sg-gap: 24px;  /* default (overridden by JS) */
+
+  display: grid;
+  grid-template-columns: repeat(var(--sg-columns), minmax(0, 1fr));
+  gap: var(--sg-gap);
+}
+
+/* Cell & Card */
+.services-grid .sg-cell { list-style: none; margin: 0; padding: 0; }
+.services-grid .sg-card {
+  height: 100%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06);
+  padding: clamp(16px, 2.2vw, 22px);
+
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  row-gap: 10px;
+
+  transition: transform .2s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .services-grid .sg-card:hover { transform: translateY(-2px); }
+}
+
+/* Media (icon or image) */
+.services-grid .sg-media {
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  background: #f5f7f9;
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.services-grid .sg-media picture,
+.services-grid .sg-media img,
+.services-grid .sg-media svg { max-width: 60%; max-height: 60%; }
+
+/* Text & link */
+.services-grid .sg-title {
+  margin: 6px 0 0;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.35;
+  color: #1b1b1f;
+}
+.services-grid .sg-summary {
+  margin: 0;
+  color: #60656f;
+  font-size: clamp(13px, 1.2vw, 15px);
+  line-height: 1.7;
+}
+.services-grid .sg-link {
+  justify-self: start;
+  margin-top: 10px;
+  color: #8abf3d;         /* wheat-ish accent */
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.services-grid .sg-link:hover,
+.services-grid .sg-link:focus-visible { border-bottom-color: #8abf3d; }
+
+/* Responsive: 2 columns on tablets, 1 on small screens */
+@media (max-width: 1023.98px) {
+  .services-grid .sg-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 599.98px) {
+  .services-grid .sg-grid { grid-template-columns: 1fr; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .services-grid .sg-card { transition: none !important; }
+}

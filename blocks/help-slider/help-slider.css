@@ -154,3 +154,9 @@
 @media (prefers-reduced-motion: reduce) {
   .help-slider .hs-slides { transition: none !important; }
 }
+.help-slider{
+    background-image: url(https://themeloto.com/wps/whaet/wp-content/uploads/2024/12/whaet-slider2.jpg);
+    background-position: center center;
+    background-size: cover;
+    padding-top: 100px;
+}

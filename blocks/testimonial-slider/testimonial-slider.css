@@ -486,3 +486,6 @@
     gap: 16px !important;
   }
 }
+.testimonial-slider .ts-controls{
+  display: none;
+}

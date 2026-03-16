@@ -509,3 +509,176 @@ form[data-action="/contactform"] .form-submit{ justify-self: start; }
   color:#A2A84C;
   text-decoration: none;
 }
+/*Process Works Section*/
+/* ================================
+   Process Section – "How the process works"
+   Structure assumed from provided HTML:
+   .section > .columns-container > .columns-wrapper
+     > .columns.process-works.block.columns-1-cols
+       > div (row)
+         > div (text or .columns-img-col)
+         > div (text or .columns-img-col)
+   ================================= */
+
+/* Root spacing & colors (tweak to your brand) */
+.process-section.columns-container {
+  --proc-max-w: 1200px;
+  --proc-pad-x: clamp(16px, 3.2vw, 40px);
+  --proc-pad-y: clamp(32px, 5vw, 88px);
+  --proc-gap-y: clamp(32px, 5vw, 72px);
+  --proc-gap-x: clamp(20px, 3vw, 48px);
+  --proc-text: #1b1b1f;
+  --proc-muted: #5a5f6a;
+  --proc-accent: #8abf3d; /* wheat/agri friendly accent */
+  --proc-border: rgba(0,0,0,0.08);
+  --proc-h2: clamp(20px, 2.2vw, 28px);
+  --proc-h3: clamp(16px, 1.6vw, 20px);
+  --proc-p:  clamp(14px, 1.25vw, 18px);
+  --proc-radius: 12px;
+}
+
+.process-section.columns-container {
+  color: var(--proc-text);
+  background: #fff;
+  padding: var(--proc-pad-y) 0;
+}
+
+.process-section .columns-wrapper {
+  max-width: var(--proc-max-w);
+  margin: 0 auto;
+  padding: 0 var(--proc-pad-x);
+}
+
+.columns.process-works.block {
+  display: grid;
+  /* Each direct child <div> is one row block */
+  gap: var(--proc-gap-y);
+}
+
+/* ---- Headline row (the first single-col heading) ---- */
+.columns.process-works.block > div:first-child h2 {
+  font-size: clamp(24px, 2.8vw, 36px);
+  line-height: 1.2;
+  margin: 0;
+  color: var(--proc-text);
+}
+
+.columns.process-works.block > div:first-child strong {
+  font-weight: 800;
+}
+
+/* ---- Generic row: two columns (image + text) ---- */
+.columns.process-works.block > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--proc-gap-x);
+  align-items: center;
+  border-top: 1px solid var(--proc-border);
+  padding-top: var(--proc-gap-y);
+}
+
+/* Make pairs form two columns on ≥ 900px */
+@media (min-width: 900px) {
+  .columns.process-works.block > div {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Alternate layout: when the image wrapper appears first, keep it on the left for odd rows and flip for even rows */
+@media (min-width: 900px) {
+  .columns.process-works.block > div:nth-of-type(odd) > .columns-img-col {
+    order: 1;
+  }
+  .columns.process-works.block > div:nth-of-type(odd) > :not(.columns-img-col) {
+    order: 2;
+  }
+  .columns.process-works.block > div:nth-of-type(even) > .columns-img-col {
+    order: 2;
+  }
+  .columns.process-works.block > div:nth-of-type(even) > :not(.columns-img-col) {
+    order: 1;
+  }
+}
+
+/* ---- Text block styling ---- */
+.columns.process-works.block h2 {
+  font-size: var(--proc-h2);
+  line-height: 1.25;
+  margin: 0 0 10px;
+  color: var(--proc-text);
+}
+
+.columns.process-works.block h3 {
+  font-size: var(--proc-h3);
+  line-height: 1.4;
+  margin: 16px 0 6px;
+  color: var(--proc-text);
+  position: relative;
+  padding-left: 14px;
+}
+
+.columns.process-works.block h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--proc-accent);
+  transform: translateY(-50%);
+}
+
+.columns.process-works.block p {
+  font-size: var(--proc-p);
+  line-height: 1.75;
+  margin: 0 0 6px;
+  color: var(--proc-muted);
+  max-width: 62ch; /* comfortable reading line-length */
+}
+
+/* ---- Image column ---- */
+.columns-img-col picture,
+.columns-img-col img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.columns-img-col img {
+  border-radius: var(--proc-radius);
+  /* Subtle elevation similar to the referenced aesthetic */
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.08),
+    0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Tidy up picture sources to avoid stretching at small widths */
+.columns-img-col {
+  overflow: hidden;
+}
+
+/* ---- Spacing adjustments for the top intro row vs subsequent rows ---- */
+.columns.process-works.block > div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* ---- Fine-tune small screens ---- */
+@media (max-width: 899.98px) {
+  .columns.process-works.block > div {
+    gap: 20px;
+  }
+  .columns-img-col img {
+    /* Slightly reduce shadow on small screens for flatter look */
+    box-shadow:
+      0 8px 16px rgba(0,0,0,0.06),
+      0 1px 3px rgba(0,0,0,0.04);
+  }
+}
+
+/* ---- Optional: focus styles for accessibility (if links/buttons are added later) ---- */
+.columns.process-works.block :where(a, button):focus-visible {
+  outline: 2px solid var(--proc-accent);
+  outline-offset: 2px;
+}
